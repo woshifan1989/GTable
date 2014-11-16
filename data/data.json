@@ -1,0 +1,77 @@
+{
+    "code": 200,
+    "message": "success!",
+    "data": {
+        "module": "AR",
+        "pageCount": 18,
+        "currentPage": 3,
+        "detail": [
+            {
+                "billId": 150,
+                "billNumber": "91-BD-20140604",
+                "relGroupFromDesc": "百度",
+                "relGroupToDesc": "91无线",
+                "creationPerson": "张春晓",
+                "currentPerson": "91-BD-20140604",
+                "statusCode": "SAVED",
+                "statusDesc": "已保存",
+                "fromPersonInfo": "张春晓(B22589,zhangchunxiao@baidu.com)",
+                "recPersonInfo": "",
+                "freezeAble": "Y"
+            },
+            {
+                "billId": 81,
+                "billNumber": "BD-QN-20140602",
+                "relGroupFromDesc": "趣拿",
+                "relGroupToDesc": "百度",
+                "creationPerson": "张春晓",
+                "currentPerson": "BD-QN-20140602",
+                "statusCode": "PROCESSING",
+                "statusDesc": "对账中",
+                "fromPersonInfo": "张春晓(B22589,zhangchunxiao@baidu.com)",
+                "recPersonInfo": "",
+                "freezeAble": "N"
+            },
+            {
+                "billId": 82,
+                "billNumber": "BD-YX-20140601",
+                "relGroupFromDesc": "百度",
+                "relGroupToDesc": "移讯",
+                "creationPerson": "张春晓",
+                "currentPerson": "BD-YX-20140601",
+                "statusCode": "PROCESSING",
+                "statusDesc": "对账中",
+                "fromPersonInfo": "张春晓(B22589,zhangchunxiao@baidu.com)",
+                "recPersonInfo": "",
+                "freezeAble": "Y"
+            },
+            {
+                "billId": 149,
+                "billNumber": "QN-BD-20140609",
+                "relGroupFromDesc": "百度",
+                "relGroupToDesc": "趣拿",
+                "creationPerson": "张春晓",
+                "currentPerson": "QN-BD-20140609",
+                "statusCode": "SAVED",
+                "statusDesc": "已保存",
+                "fromPersonInfo": "张春晓(B22589,zhangchunxiao@baidu.com)",
+                "recPersonInfo": "",
+                "freezeAble": "Y"
+            },
+            {
+                "billId": 148,
+                "billNumber": "UUC-BD-20140601",
+                "relGroupFromDesc": "百度",
+                "relGroupToDesc": "悠悠村",
+                "creationPerson": "张春晓",
+                "currentPerson": "UUC-BD-20140601",
+                "statusCode": "SAVED",
+                "statusDesc": "已保存",
+                "fromPersonInfo": "张春晓(B22589,zhangchunxiao@baidu.com)",
+                "recPersonInfo": "",
+                "freezeAble": "Y"
+            }
+        ]
+    }
+
+}
