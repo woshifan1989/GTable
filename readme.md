@@ -85,7 +85,7 @@ First of all ,let us look at a most important options that is used by 'gtable.do
 
 Before the function, you must assign array for options.data
 
-'tableOptoins' is a data repository, it can manager you data, when you redraw your table by it.
+'tableOptoins' is a data repository, it can manager you data, so you can redraw your table by it easily.
 
 ##skills
 It provides a number of js files, but just 'draw.js' and 'hScroll' are must, so the best choice is you only choose what you want.
