@@ -83,7 +83,7 @@ First of all ,let us look at a most important options that is used by 'gtable.do
 }
 ```
 
-Before the function, you must assign array for options.data
+Before doInit, you must assign array for options.data
 
 'tableOptoins' is a data repository, it can manager you data, so you can redraw your table by it easily.
 
