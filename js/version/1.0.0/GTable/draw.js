@@ -1,10 +1,48 @@
-/*
- *Draw table
- *param 
+//                    _ooOoo_
+//                   o8888888o
+//                   88" . "88
+//                   (| -_- |)
+//                   O\  =  /O
+//                ____/`---'\____
+//              .'  \|     |//  `.
+//             /  \|||  :  |||//  \
+//            /  _||||| -:- |||||-  \
+//            |   | \\  -  /// |   |
+//            | \_|  ''\---/''  |   |
+//            \  .-\__  `-`  ___/-. /
+//          ___`. .'  /--.--\  `. . __
+//       ."" '<  `.___\_<|>_/___.'  >'"".
+//      | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+//      \  \ `-.   \_ __\ /__ _/   .-` /  /
+// ======`-.____`-.___\_____/___.-`____.-'======
+//                    '=---='
+//            佛祖保佑       永无BUG
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/**
+ * @name draw
+ * @desc 
+ * @dependencies jquery|GTable
+ * @author fhw
+ * @example
  */
 
-define(function () {
-    return {
+(function($, factory){
+
+    // Set up GTable for the environment. Start with AMD.
+    if (typeof define === 'function' && define.amd) {
+        define(function() {
+            factory($);
+        });
+
+    // Finally, as a browser global.
+    } else {
+        factory($);
+    }
+
+})(jQuery, function($){
+
+    $.GTable.draw = {
         render: function (opts) {
 
             var i, 
@@ -320,4 +358,7 @@ define(function () {
             this.render(opts);
         }
     };
+
 });
+
+

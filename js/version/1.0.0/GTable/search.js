@@ -1,10 +1,49 @@
-/*
- *operation.js
- *操作表格（增删改）
+//                    _ooOoo_
+//                   o8888888o
+//                   88" . "88
+//                   (| -_- |)
+//                   O\  =  /O
+//                ____/`---'\____
+//              .'  \|     |//  `.
+//             /  \|||  :  |||//  \
+//            /  _||||| -:- |||||-  \
+//            |   | \\  -  /// |   |
+//            | \_|  ''\---/''  |   |
+//            \  .-\__  `-`  ___/-. /
+//          ___`. .'  /--.--\  `. . __
+//       ."" '<  `.___\_<|>_/___.'  >'"".
+//      | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+//      \  \ `-.   \_ __\ /__ _/   .-` /  /
+// ======`-.____`-.___\_____/___.-`____.-'======
+//                    '=---='
+//            佛祖保佑       永无BUG
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/**
+ * @name search
+ * @desc 搜索
+ * @dependencies jquery|GTable
+ * @author fhw
+ * @example
  */
-define(function () {
-    return {
-        addRows: function (opts) {
+
+(function($, factory){
+
+    // Set up GTable for the environment. Start with AMD.
+    if (typeof define === 'function' && define.amd) {
+        define(function() {
+            factory($);
+        });
+
+    // Finally, as a browser global.
+    } else {
+        factory($);
+    }
+
+})(jQuery, function($){
+
+    $.GTable.search = {
+        render: function (opts) {
 
             var options    = opts, 
                 leftCols   = options.colModel.leftCols,
@@ -17,7 +56,7 @@ define(function () {
 
             var $GTable = $("#"+options.containElement);
 
-            function addRow () {
+            function addSearchRow () {
                 
                 var str = [];
 
@@ -32,21 +71,12 @@ define(function () {
 
                         switch(leftCols[i].areaElement){
                             case "input":
-                                str.push('<td style="width:'+ leftCols[i].width +'px;text-align:'+ (leftCols[i].align||"left") +';'+ (leftCols[i].isShow? "": "display:none;") +'"><input type="text" class="elc_ipt ipt_'+ leftCols[i].fieldName +'"></td>');
-                                break;
-
                             case "select":
-                                str.push('<td style="width:'+ leftCols[i].width +'px;text-align:'+ (leftCols[i].align||"left") +';'+ (leftCols[i].isShow? "": "display:none;") +'"><select class="elc_slt slt_'+ leftCols[i].fieldName +'"></select></td>');
-                                break;
-
                             case "textarea":
-                                str.push('<td style="width:'+ leftCols[i].width +'px;text-align:'+ (leftCols[i].align||"left") +';'+ (leftCols[i].isShow? "": "display:none;") +'"><textarea class="elc_txt txt_'+ leftCols[i].fieldName +'"></textarea></td>');
+                                str.push('<td style="width:'+ leftCols[i].width +'px;text-align:'+ (leftCols[i].align||"left") +';'+ (leftCols[i].isShow? "": "display:none;") +'"><input type="text" class="elc_ipt ipt_search ipt_search_'+ leftCols[i].fieldName +'"></td>');
                                 break;
 
                             case "checkbox":
-                                str.push('<td style="width:'+ leftCols[i].width +'px;text-align:'+ (leftCols[i].align||"left") +';'+ (leftCols[i].isShow? "": "display:none;") +'"><input class="txt_'+ leftCols[i].fieldName +'" type="checkbox"></input></td>');
-                                break;
-
                             default:
                                 str.push('<td style="width:'+ leftCols[i].width +'px;text-align:'+ (leftCols[i].align||"left") +';'+ (leftCols[i].isShow? "": "display:none;") +'"></td>');
 
@@ -68,21 +98,12 @@ define(function () {
 
                         switch(rightCols[i].areaElement){
                             case "input":
-                                str.push('<td style="width:'+ rightCols[i].width +'px;text-align:'+ (rightCols[i].align||"left") +';'+ (rightCols[i].isShow? "": "display:none;") +'"><input type="text" class="elc_ipt ipt_'+ rightCols[i].fieldName +'"></td>');
-                                break;
-
                             case "select":
-                                str.push('<td style="width:'+ rightCols[i].width +'px;text-align:'+ (rightCols[i].align||"left") +';'+ (rightCols[i].isShow? "": "display:none;") +'"><select class="elc_slt slt_'+ rightCols[i].fieldName +'"></select></td>');
-                                break;
-
                             case "textarea":
-                                str.push('<td style="width:'+ rightCols[i].width +'px;text-align:'+ (rightCols[i].align||"left") +';'+ (rightCols[i].isShow? "": "display:none;") +'"><textarea class="elc_txt txt_'+ rightCols[i].fieldName +'"></textarea></td>');
+                                str.push('<td style="width:'+ rightCols[i].width +'px;text-align:'+ (rightCols[i].align||"left") +';'+ (rightCols[i].isShow? "": "display:none;") +'"><input type="text" class="elc_ipt ipt_search ipt_search_'+ rightCols[i].fieldName +'"></td>');
                                 break;
 
                             case "checkbox":
-                                str.push('<td style="width:'+ rightCols[i].width +'px;text-align:'+ (rightCols[i].align||"left") +';'+ (rightCols[i].isShow? "": "display:none;") +'"><input class="txt_'+ rightCols[i].fieldName +'" type="checkbox"></input></td>');
-                                break;
-
                             default:
                                 str.push('<td style="width:'+ rightCols[i].width +'px;text-align:'+ (rightCols[i].align||"left") +';'+ (rightCols[i].isShow? "": "display:none;") +'"></td>');
 
@@ -103,21 +124,12 @@ define(function () {
                     for (i=0, l=centerCols.length; i<l; i++) {
                         switch(centerCols[i].areaElement){
                             case "input":
-                                str.push('<td style="width:'+ centerCols[i].width +'px;text-align:'+ (centerCols[i].align||"left") +';'+ (centerCols[i].isShow? "": "display:none;") +'"><input type="text" class="elc_ipt ipt_'+ centerCols[i].fieldName +'"></td>');
-                                break;
-
                             case "select":
-                                str.push('<td style="width:'+ centerCols[i].width +'px;text-align:'+ (centerCols[i].align||"left") +';'+ (centerCols[i].isShow? "": "display:none;") +'"><select class="elc_slt slt_'+ centerCols[i].fieldName +'"></select></td>');
-                                break;
-
                             case "textarea":
-                                str.push('<td style="width:'+ centerCols[i].width +'px;text-align:'+ (centerCols[i].align||"left") +';'+ (centerCols[i].isShow? "": "display:none;") +'"><textarea class="elc_txt txt_'+ centerCols[i].fieldName +'"></textarea></td>');
+                                str.push('<td style="width:'+ centerCols[i].width +'px;text-align:'+ (centerCols[i].align||"left") +';'+ (centerCols[i].isShow? "": "display:none;") +'"><input type="text" class="elc_ipt ipt_search ipt_search_'+ centerCols[i].fieldName +'"></td>');
                                 break;
 
                             case "checkbox":
-                                str.push('<td style="width:'+ centerCols[i].width +'px;text-align:'+ (centerCols[i].align||"left") +';'+ (centerCols[i].isShow? "": "display:none;") +'"><input class="txt_'+ centerCols[i].fieldName +'" type="checkbox"></input></td>');
-                                break;
-
                             default:
                                 str.push('<td style="width:'+ centerCols[i].width +'px;text-align:'+ (centerCols[i].align||"left") +';'+ (centerCols[i].isShow? "": "display:none;") +'"></td>');
 
@@ -129,13 +141,13 @@ define(function () {
                                     '</table>' +
                                 '</div>');
                 }
- 
+  
                 str.push('</div>');
                 
                 return str;
             }
 
-            var $newRow = $(addRow().join(""));
+            var $newRow = $(addSearchRow().join(""));
             // 操作css
             var w_leftCols  = 0,
                 w_rightCols = 0,
@@ -177,13 +189,12 @@ define(function () {
                 "padding-right": w_rightCols + "px"
             });
 
-            if (options.addRowTo == "bottom") {
+            if (options.search.addSearchRowTo == "bottom") {
                 $GTable.find(".GTable-body").append($newRow);
             } else {
                 $GTable.find(".GTable-body").prepend($newRow);
             }
             
-
             var leftColsHeight = 0, rightColsHeight = 0, centerColsHeight = 0, equalHeight = 0;
             var leftTr  = $newRow.find(".GTable-body-leftCols-table tr"),
                 rightTr = $newRow.find(".GTable-body-rightCols-table tr"),
@@ -208,8 +219,8 @@ define(function () {
                 height: equalHeight
             });
 
-            if (opts.addRowComplete && $.isFunction(opts.addRowComplete)) {
-                opts.addRowComplete($newRow);
+            if (opts.search.addSearchRowComplete && $.isFunction(opts.search.addSearchRowComplete)) {
+                opts.search.addSearchRowComplete($newRow);
             };
             
             // 此处有坑，添加操作需要充值滚动条
@@ -241,16 +252,9 @@ define(function () {
 
 
         },
-        removeRows: function () {
-            
-        },
-        editRows: function () {
-            
+        doInit: function (opts) {
+            this.render(opts);
         }
     };
+
 });
-
-
-
-
-

@@ -1,12 +1,47 @@
+//                    _ooOoo_
+//                   o8888888o
+//                   88" . "88
+//                   (| -_- |)
+//                   O\  =  /O
+//                ____/`---'\____
+//              .'  \|     |//  `.
+//             /  \|||  :  |||//  \
+//            /  _||||| -:- |||||-  \
+//            |   | \\  -  /// |   |
+//            | \_|  ''\---/''  |   |
+//            \  .-\__  `-`  ___/-. /
+//          ___`. .'  /--.--\  `. . __
+//       ."" '<  `.___\_<|>_/___.'  >'"".
+//      | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+//      \  \ `-.   \_ __\ /__ _/   .-` /  /
+// ======`-.____`-.___\_____/___.-`____.-'======
+//                    '=---='
+//            佛祖保佑       永无BUG
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 /**
- * @module horizontalScroll
- * @desc   自定义横向滚动条 
- * @author HI:fanhaiwang2012  <fanhaiwang@baidu.com>
- * @version 2014-08-03
+ * @name hScroll
+ * @desc 自定义横向滚动条
+ * @dependencies jquery
+ * @author fhw
+ * @example
  */
 
-define(['jquery'], function($) {
- 
+(function($, factory){
+
+    // Set up GTable for the environment. Start with AMD.
+    if (typeof define === 'function' && define.amd) {
+        define(function() {
+            factory($);
+        });
+
+    // Finally, as a browser global.
+    } else {
+        factory($);
+    }
+
+})(jQuery, function($){
+
     $.fn.extend({
         loadHScroll: function(opt, distance){
             return this.each(function(){
@@ -210,4 +245,3 @@ define(['jquery'], function($) {
     });
 
 });
-

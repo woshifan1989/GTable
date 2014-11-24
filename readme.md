@@ -91,7 +91,7 @@ Before doInit, you must assign array for options.data
 It provides a number of js files, but just 'draw.js' and 'hScroll' are must, so the best choice is you only choose what you want.
 
 ##Rely
-**jQuery**、**requireJs**
+**jQuery**
 
 ##Compatibility
 **IE7+**、**ff**、**chrome**

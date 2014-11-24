@@ -4,10 +4,10 @@
 //                   (| -_- |)
 //                   O\  =  /O
 //                ____/`---'\____
-//              .'  \\|     |//  `.
-//             /  \\|||  :  |||//  \
+//              .'  \|     |//  `.
+//             /  \|||  :  |||//  \
 //            /  _||||| -:- |||||-  \
-//            |   | \\\  -  /// |   |
+//            |   | \\  -  /// |   |
 //            | \_|  ''\---/''  |   |
 //            \  .-\__  `-`  ___/-. /
 //          ___`. .'  /--.--\  `. . __
@@ -19,8 +19,29 @@
 //            佛祖保佑       永无BUG
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-define(function () {
-    return {
+/**
+ * @name page
+ * @desc 分页
+ * @dependencies jquery|GTable
+ * @author fhw
+ * @example
+ */
+ 
+(function($, factory){
+
+    // Set up GTable for the environment. Start with AMD.
+    if (typeof define === 'function' && define.amd) {
+        define(function() {
+            factory($);
+        });
+
+    // Finally, as a browser global.
+    } else {
+        factory($);
+    }
+
+})(jQuery, function($){
+    $.GTable.page = {
         render: function (opts) {
             function Gpage (opt) {
                 this.$con      = $("#"+opt.page.pageId);
@@ -95,6 +116,4 @@ define(function () {
         }
     };
 });
-            
-
 

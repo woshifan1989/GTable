@@ -1,10 +1,47 @@
-/*
- *列头时刻保持在表格上方
- *param 
+//                    _ooOoo_
+//                   o8888888o
+//                   88" . "88
+//                   (| -_- |)
+//                   O\  =  /O
+//                ____/`---'\____
+//              .'  \|     |//  `.
+//             /  \|||  :  |||//  \
+//            /  _||||| -:- |||||-  \
+//            |   | \\  -  /// |   |
+//            | \_|  ''\---/''  |   |
+//            \  .-\__  `-`  ___/-. /
+//          ___`. .'  /--.--\  `. . __
+//       ."" '<  `.___\_<|>_/___.'  >'"".
+//      | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+//      \  \ `-.   \_ __\ /__ _/   .-` /  /
+// ======`-.____`-.___\_____/___.-`____.-'======
+//                    '=---='
+//            佛祖保佑       永无BUG
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/**
+ * @name fixeHead
+ * @desc 列头时刻保持在表格上方
+ * @dependencies jquery|GTable
+ * @author fhw
+ * @example
  */
 
-define(function () {
-    return {
+(function($, factory){
+
+    // Set up GTable for the environment. Start with AMD.
+    if (typeof define === 'function' && define.amd) {
+        define(function() {
+            factory($);
+        });
+
+    // Finally, as a browser global.
+    } else {
+        factory($);
+    }
+
+})(jQuery, function($){
+    $.GTable.fixedHead = {
         render: function (opts) {
 
             var i,

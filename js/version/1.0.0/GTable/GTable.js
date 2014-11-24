@@ -1,31 +1,60 @@
+//                    _ooOoo_
+//                   o8888888o
+//                   88" . "88
+//                   (| -_- |)
+//                   O\  =  /O
+//                ____/`---'\____
+//              .'  \|     |//  `.
+//             /  \|||  :  |||//  \
+//            /  _||||| -:- |||||-  \
+//            |   | \\  -  /// |   |
+//            | \_|  ''\---/''  |   |
+//            \  .-\__  `-`  ___/-. /
+//          ___`. .'  /--.--\  `. . __
+//       ."" '<  `.___\_<|>_/___.'  >'"".
+//      | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+//      \  \ `-.   \_ __\ /__ _/   .-` /  /
+// ======`-.____`-.___\_____/___.-`____.-'======
+//                    '=---='
+//            佛祖保佑       永无BUG
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 /**
  * @name GTable.js
  * @desc 
  * @dependencies jquery
- * @author fanhaiwang
+ * @author fhw
  * @example
  */
 
-define(function (require) {
-    
-    var $window = $(window),
-        $body   = $("body");
+(function($, factory){
 
-    require("./hScroll");
+    // Set up GTable for the environment. Start with AMD.
+    if (typeof define === 'function' && define.amd) {
+        define(function() {
+            factory($);
+        });
 
-    return {
+    // Finally, as a browser global.
+    } else {
+        factory($);
+    }
+
+})(jQuery, function($){
+
+    $.GTable = {
         render: function (opts) {
             
-            var draw = require("./draw");
+            var draw = $.GTable.draw;
             draw.doInit(opts);
 
             if (opts.page && opts.page.isPage === true) {
-                var page = require("./page");
+                var page = $.GTable.page;
                 page.doInit(opts);
             };
                 
             if (opts.fixedHead && opts.fixedHead.isFixedHead === true ) {
-                var fixedHead = require("./fixedHead");
+                var fixedHead = $.GTable.fixedHead;
                 fixedHead.doInit(opts);
             };
 
@@ -64,16 +93,16 @@ define(function (require) {
         doInit: function (opts) {
             this.render(opts);
         },
+        remove: function (opts) {
+            $("#"+opts.containElement).empty();
+        },
         refresh: function (opts) {
             this.remove(opts);
             this.render(opts);
         },
-        remove: function (opts) {
-            $("#"+opts.containElement).empty();
-        },
         addRows: function (opts) {
 
-            var operation = require("./operation");
+            var operation = $.GTable.operation;
             operation.addRows(opts);
             $("#"+opts.containElement).resizeHScroll({
                 "idName": opts.containElement+"_Scroll"
@@ -81,4 +110,5 @@ define(function (require) {
 
         }
     };
+
 });
