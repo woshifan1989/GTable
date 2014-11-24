@@ -96,3 +96,26 @@ It provides a number of js files, but just 'draw.js' and 'hScroll' are must, so 
 ##Compatibility
 **IE7+**、**ff**、**chrome**
 
+##Changlog：
+
+   * 1.0.0
+
+        * no rely 'require.js'
+
+   * 1.0.0 beta
+
+        * support lock left columns or right columns or both
+
+        * table fold line
+
+        * set column width and alignment ... by yourself
+
+        * fixed column head
+
+        * fixed scroll to bottom
+
+        * add rows
+
+        * paging
+
+        * data repository 'tableOptions'
