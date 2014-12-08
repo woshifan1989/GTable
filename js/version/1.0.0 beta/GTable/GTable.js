@@ -16,6 +16,8 @@ define(function (require) {
     return {
         render: function (opts) {
             
+            var $window = $(window);
+            
             var draw = require("./draw");
             draw.doInit(opts);
 
