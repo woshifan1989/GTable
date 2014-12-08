@@ -45,6 +45,8 @@
     $.GTable = {
         render: function (opts) {
             
+            var $window = $(window);
+            
             var draw = $.GTable.draw;
             draw.doInit(opts);
 
