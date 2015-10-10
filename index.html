@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Gtable by woshifan1989</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Gtable</h1>
+      <h2 class="project-tagline">test</h2>
+      <a href="https://github.com/woshifan1989/GTable" class="btn">View on GitHub</a>
+      <a href="https://github.com/woshifan1989/GTable/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/woshifan1989/GTable/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="gtable" class="anchor" href="#gtable" aria-hidden="true"><span class="octicon octicon-link"></span></a>GTable</h1>
+
+<p>A powerful table components</p>
+
+<h2>
+<a id="what-can-it-do" class="anchor" href="#what-can-it-do" aria-hidden="true"><span class="octicon octicon-link"></span></a>What can it do</h2>
+
+<ul>
+<li>support lock left columns or right columns or both</li>
+<li>table fold line</li>
+<li>set column width and alignment ... by yourself</li>
+<li>fixed column head</li>
+<li>fixed scroll to bottom</li>
+<li>add rows</li>
+<li>paging</li>
+<li>data repository 'tableOptions'</li>
+</ul>
+
+<h2>
+<a id="api" class="anchor" href="#api" aria-hidden="true"><span class="octicon octicon-link"></span></a>API</h2>
+
+<ol>
+<li>doInit: creat GTable</li>
+<li>refresh: refresh GTable</li>
+<li>remove: remove GTable</li>
+<li>addRows: add rows</li>
+</ol>
+
+<h2>
+<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use</h2>
+
+<p>First of all ,let us look at a most important options that is used by 'gtable.doInit'.</p>
+
+<div class="highlight highlight-source-js"><pre>{
+    containElement<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>GTable<span class="pl-pds">"</span></span>,   <span class="pl-c">//id名称</span>
+    data<span class="pl-k">:</span> [],
+    colModel<span class="pl-k">:</span> {
+        <span class="pl-s"><span class="pl-pds">"</span>leftCols<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+            {columnName<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>cbx<span class="pl-pds">"</span></span>, fieldName<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>cbx<span class="pl-pds">"</span></span>, width<span class="pl-k">:</span> <span class="pl-c1">50</span>, align<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>center<span class="pl-pds">"</span></span>, isShow<span class="pl-k">:</span> <span class="pl-c1">true</span>, areaElement<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>checkbox<span class="pl-pds">"</span></span>, 
+                <span class="pl-c">//function返回boolean</span>
+                <span class="pl-en">cbx</span><span class="pl-k">:</span> <span class="pl-k">function</span> (<span class="pl-smi">opt</span>) {
+                    <span class="pl-k">if</span> (opt.freezeAble <span class="pl-k">===</span> <span class="pl-s"><span class="pl-pds">"</span>Y<span class="pl-pds">"</span></span>) {
+                        <span class="pl-c">// return true;</span>
+                        <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;input type="checkbox" /&gt;<span class="pl-pds">'</span></span>;
+                    } <span class="pl-k">else</span> {
+                        <span class="pl-c">// return false;</span>
+                        <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;input type="checkbox" disabled="disabled"/&gt;<span class="pl-pds">'</span></span>;
+                    }
+                }
+            }
+        ],
+        <span class="pl-s"><span class="pl-pds">"</span>rightCols<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+            {columnName<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>操作<span class="pl-pds">"</span></span>, fieldName<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>act<span class="pl-pds">"</span></span>, width<span class="pl-k">:</span> <span class="pl-c1">150</span>, align<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>center<span class="pl-pds">"</span></span>, isShow<span class="pl-k">:</span> <span class="pl-c1">true</span>, 
+                <span class="pl-en">act</span><span class="pl-k">:</span> <span class="pl-k">function</span> (<span class="pl-smi">opt</span>) {
+                    <span class="pl-k">var</span> str <span class="pl-k">=</span> [];
+                    <span class="pl-k">if</span> (opt.freezeAble <span class="pl-k">===</span> <span class="pl-s"><span class="pl-pds">"</span>Y<span class="pl-pds">"</span></span>) {
+                        <span class="pl-c">// 可以冻结   checkbox是亮的</span>
+                        str.<span class="pl-c1">push</span>(<span class="pl-s"><span class="pl-pds">'</span>&lt;a title="冻结" class="freeze" tid="<span class="pl-pds">'</span></span><span class="pl-k">+</span>opt.billId<span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">'</span>"&gt;冻结&lt;/a&gt;<span class="pl-pds">'</span></span>);
+                    } <span class="pl-k">else</span> {
+                        str.<span class="pl-c1">push</span>(<span class="pl-s"><span class="pl-pds">'</span>&lt;button title="取消冻结" type="button" class="btn btn-default ml10 unfreeze" tid="<span class="pl-pds">'</span></span><span class="pl-k">+</span>opt.billId<span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">'</span>"&gt; &lt;span class="icon unfreezeIcon"&gt;&lt;/span&gt;取消冻结&lt;/button&gt;<span class="pl-pds">'</span></span>);
+                    }
+                    <span class="pl-k">return</span> str.<span class="pl-c1">join</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>);
+                }
+            }
+        ],
+        <span class="pl-s"><span class="pl-pds">"</span>centerCols<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+            {columnName<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>关联交易对账单<span class="pl-pds">"</span></span>, fieldName<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>billNumber<span class="pl-pds">"</span></span>, width<span class="pl-k">:</span> <span class="pl-c1">200</span>, align<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>left<span class="pl-pds">"</span></span>, isShow<span class="pl-k">:</span> <span class="pl-c1">true</span>, areaElement<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>select<span class="pl-pds">"</span></span>},
+            {columnName<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>发起方公司<span class="pl-pds">"</span></span>, fieldName<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>relGroupFromDesc<span class="pl-pds">"</span></span>, width<span class="pl-k">:</span> <span class="pl-c1">150</span>, align<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>left<span class="pl-pds">"</span></span>, isShow<span class="pl-k">:</span> <span class="pl-c1">true</span>, areaElement<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>textarea<span class="pl-pds">"</span></span>},
+            {columnName<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>接收方公司<span class="pl-pds">"</span></span>, fieldName<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>relGroupToDesc<span class="pl-pds">"</span></span>, width<span class="pl-k">:</span> <span class="pl-c1">150</span>, align<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>left<span class="pl-pds">"</span></span>, isShow<span class="pl-k">:</span> <span class="pl-c1">true</span>, areaElement<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>input<span class="pl-pds">"</span></span>},
+            {columnName<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>创建人10<span class="pl-pds">"</span></span>, fieldName<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>creationPerson<span class="pl-pds">"</span></span>, width<span class="pl-k">:</span> <span class="pl-c1">100</span>, align<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>center<span class="pl-pds">"</span></span>, isShow<span class="pl-k">:</span> <span class="pl-c1">true</span>, areaElement<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>input<span class="pl-pds">"</span></span>},
+            {columnName<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>创建人11<span class="pl-pds">"</span></span> fieldName<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>creationPerson<span class="pl-pds">"</span></span>, width<span class="pl-k">:</span> <span class="pl-c1">100</span>, align<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>center<span class="pl-pds">"</span></span>, isShow<span class="pl-k">:</span> <span class="pl-c1">true</span>, areaElement<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>input<span class="pl-pds">"</span></span>},
+            {columnName<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>当前处理人<span class="pl-pds">"</span></span>, fieldName<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>currentPerson<span class="pl-pds">"</span></span>, width<span class="pl-k">:</span> <span class="pl-c1">200</span>, align<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>center<span class="pl-pds">"</span></span>, isShow<span class="pl-k">:</span> <span class="pl-c1">true</span>, areaElement<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>input<span class="pl-pds">"</span></span>}
+        ]
+    },
+    <span class="pl-en">loadTableComplete</span><span class="pl-k">:</span> <span class="pl-k">function</span> () {
+        <span class="pl-c">// console.log("loadTableComplete");</span>
+    },
+    page<span class="pl-k">:</span> {
+        isPage<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+        pageId<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>page<span class="pl-pds">"</span></span>,
+        curPage<span class="pl-k">:</span> <span class="pl-c1">5</span>,
+        totalNums<span class="pl-k">:</span> <span class="pl-c1">30</span>,
+        <span class="pl-en">loadPageComplete</span><span class="pl-k">:</span> <span class="pl-k">function</span> (<span class="pl-smi">num</span>) {}
+    },
+    fixedHead<span class="pl-k">:</span> {
+        isFixedHead<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+        <span class="pl-en">fixedHeadComplete</span><span class="pl-k">:</span> <span class="pl-k">function</span> () {}
+    },
+    <span class="pl-en">addRowComplete</span><span class="pl-k">:</span> <span class="pl-k">function</span> () {}
+}</pre></div>
+
+<p>Before doInit, you must assign array for options.data</p>
+
+<p>'tableOptoins' is a data repository, it can manager you data, so you can redraw your table by it easily.</p>
+
+<h2>
+<a id="skills" class="anchor" href="#skills" aria-hidden="true"><span class="octicon octicon-link"></span></a>skills</h2>
+
+<p>It provides a number of js files, but just 'draw.js' and 'hScroll' are must, so the best choice is you only choose what you want.</p>
+
+<h2>
+<a id="rely" class="anchor" href="#rely" aria-hidden="true"><span class="octicon octicon-link"></span></a>Rely</h2>
+
+<p><strong>jQuery</strong></p>
+
+<h2>
+<a id="compatibility" class="anchor" href="#compatibility" aria-hidden="true"><span class="octicon octicon-link"></span></a>Compatibility</h2>
+
+<p><strong>IE7+</strong>、<strong>ff</strong>、<strong>chrome</strong></p>
+
+<h2>
+<a id="changlog" class="anchor" href="#changlog" aria-hidden="true"><span class="octicon octicon-link"></span></a>Changlog：</h2>
+
+<ul>
+<li>
+<p>1.0.0</p>
+
+<pre><code>* no rely 'require.js'
+</code></pre>
+</li>
+<li>
+<p>1.0.0 beta</p>
+
+<pre><code>* support lock left columns or right columns or both
+
+* table fold line
+
+* set column width and alignment ... by yourself
+
+* fixed column head
+
+* fixed scroll to bottom
+
+* add rows
+
+* paging
+
+* data repository 'tableOptions'
+</code></pre>
+</li>
+</ul>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/woshifan1989/GTable">Gtable</a> is maintained by <a href="https://github.com/woshifan1989">woshifan1989</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
